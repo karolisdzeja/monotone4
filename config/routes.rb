@@ -1,4 +1,6 @@
 Monotone4::Application.routes.draw do
+  resources :histories
+
   resources :hearts
 
   resources :subscriptions

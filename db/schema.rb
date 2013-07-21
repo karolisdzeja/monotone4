@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130721000720) do
+ActiveRecord::Schema.define(version: 20130721185824) do
 
   create_table "channels", force: true do |t|
     t.string   "name"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20130721000720) do
   add_index "hearts", ["user_id"], name: "index_hearts_on_user_id"
   add_index "hearts", ["video_id", "user_id"], name: "index_hearts_on_video_id_and_user_id", unique: true
   add_index "hearts", ["video_id"], name: "index_hearts_on_video_id"
+
+  create_table "histories", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "video_id"
+    t.integer  "channel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "listings", force: true do |t|
     t.integer  "channel_id"
