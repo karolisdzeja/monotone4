@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @heart.user_id %>
+</p>
+
+<p>
+  <strong>Video:</strong>
+  <%= @heart.video_id %>
+</p>
+
+<p>
+  <strong>Created at:</strong>
+  <%= @heart.created_at %>
+</p>
+
+<%= link_to 'Edit', edit_heart_path(@heart) %> |
+<%= link_to 'Back', hearts_path %>

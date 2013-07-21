@@ -1,0 +1,29 @@
+<%= form_for(@heart) do |f| %>
+  <% if @heart.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@heart.errors.count, "error") %> prohibited this heart from being saved:</h2>
+
+      <ul>
+      <% @heart.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :video_id %><br>
+    <%= f.number_field :video_id %>
+  </div>
+  <div class="field">
+    <%= f.label :created_at %><br>
+    <%= f.datetime_select :created_at %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
