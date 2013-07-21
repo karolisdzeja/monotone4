@@ -5,7 +5,7 @@ class CreateVideos < ActiveRecord::Migration
       t.string :artist
       t.integer :year
       t.string :youtube
-      t.integer :views
+      t.integer :views, :default => 0
 
       t.timestamps
     end

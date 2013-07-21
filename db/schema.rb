@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130721185824) do
+ActiveRecord::Schema.define(version: 20130721213335) do
 
   create_table "channels", force: true do |t|
     t.string   "name"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 20130721185824) do
     t.string   "artist"
     t.integer  "year"
     t.string   "youtube"
-    t.integer  "views"
+    t.integer  "views",      default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
