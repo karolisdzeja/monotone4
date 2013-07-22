@@ -1,13 +1,11 @@
 Monotone4::Application.routes.draw do
   resources :histories
-
   resources :hearts
-
   resources :subscriptions
-
   resources :channels
-
   resources :videos
+  
+  root :to => 'high_voltage/pages#show', id: 'home'
 
   devise_for :users
   mount RailsAdmin::Engine => '/hq', :as => 'rails_admin'
