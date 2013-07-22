@@ -8,6 +8,8 @@ gem 'devise'
 gem 'cancan'
 gem 'rails_admin'
 
+gem 'protected_attributes'
+
 # Pages
 gem 'high_voltage'
 
