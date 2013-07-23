@@ -1,13 +1,14 @@
 $bg-color: #ecf0f1;
-$header-color: #ecf0f1;
+$header-color: #fff;
 $video-width: 1280px;
 $video-height: 720px;
 $header-height: 72px;
 $icon-color: #bdc3c7;
 $footer-height: 44px;
+$logo-color: #e2721c;
 body {
   margin: 0;
-  background: $bg-color;
+  background-color: $bg-color;
 }
 header {
   width: $video-width;
@@ -22,15 +23,15 @@ header {
   margin-left: 15px;
   cursor: pointer;
   letter-spacing: -5px;
-  text-shadow: 1px 1px 0 #000;
+  // text-shadow: 1px 1px 0 #000;
   a {
-    color: #444;
+    color: $logo-color;
     text-decoration: none;
     &:visited {
-      color: #444;
+      color: $logo-color;
     }
     &:hover {
-      color: #444;
+      color: $logo-color;
       background-color: transparent;
     }
   }
@@ -38,7 +39,7 @@ header {
 #full-screen {
   height: $header-height;
   width: $header-height;
-  font-size: 44px;
+  font-size: 36px;
   color: $icon-color;
   float: right;
   line-height: $header-height;
@@ -46,17 +47,33 @@ header {
   cursor: pointer;
 }
 #full-screen:hover {
-  color: #2980b9;
+  color: darken($icon-color, 5%);
 }
 
 ul.user-menu {
   list-style: none;	
-  margin: 0 0 2em;
+  margin: 0 72px 0 0;
   padding: 0;
   float: right;
 }
 ul.user-menu li {
   display: inline;  
+}
+.button {
+  display: inline-block;
+  background: $logo-color;
+  padding: 0 18px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 4px;
+  height: 36px;
+  line-height: 36px;
+  margin: 18px;
+  font-weight: bold;
+}
+.button:hover {
+  background: lighten($logo-color, 5%);
+  color: #fff;
 }
 #main-container {
   width: $video-width;
@@ -79,7 +96,7 @@ ul.user-menu li {
   background: $header-color;
   box-shadow: 4px 4px 8px #888;
 }
-.button {
+.icon-button {
   float: left;
   font-size: 24px;
   font-weight: bold;

@@ -1,6 +1,6 @@
+$link-color: #e2721c;
 body {
-  background-color: #fff;
-  color: #333;
+  color: #444;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -19,13 +19,13 @@ pre {
 }
 
 a {
-  color: #000;
+  color: $link-color;
+  text-decoration: none;
   &:visited {
-    color: #666;
+    color: $link-color;
   }
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: lighten($link-color, 5%);
   }
 }
 
