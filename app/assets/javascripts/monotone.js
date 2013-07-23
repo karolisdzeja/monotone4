@@ -34,7 +34,7 @@ $(document).ready(function() {
     currentVideoID = 0;
     $.get('/videos.json', function(data) {
       playlist = shuffle(data);
-      $('.icon-heart, #currently').show();
+      $('.icon-heart, #currently').css({'visibility':'visible'});
       $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
       if( playlist[currentVideoID]['heart'] == true ) {
         $('#heart').addClass('active');
