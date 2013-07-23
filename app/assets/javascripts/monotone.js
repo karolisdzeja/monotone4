@@ -25,10 +25,7 @@ $(document).ready(function() {
   var currentVideoID = 0;
   var playlist;
   
-  $('#test-pattern').click(function() {
-    startPlayer(1);
-    $(this).remove();
-  });
+  startPlayer(1);
   
   function startPlayer(channel) {
     currentVideoID = 0;
