@@ -5,16 +5,20 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="//use.typekit.net/pex0clf.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 <body>
+<div id="main-container">
 <header>
-  <div id="logo">MONOTONE</div>
+  <div id="logo" class="tk-museo-sans">MONOTONE.TV</div>
+  <div class="icon-resize-full" id="full-screen"></div>
   <ul class="user-menu">
     <%= render 'devise/menu/registration_items' %>
     <%= render 'devise/menu/login_items' %>
   </ul>
 </header>
 <%= yield %>
-
+</div>
 </body>
 </html>

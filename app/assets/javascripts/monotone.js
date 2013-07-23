@@ -80,4 +80,5 @@ $(document).ready(function() {
       $('#video-player').tubeplayer('quality', 'hd1080');
     });
   }
+  
 });
