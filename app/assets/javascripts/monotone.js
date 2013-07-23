@@ -28,12 +28,13 @@ $(document).ready(function() {
   $('#test-pattern').click(function() {
     startPlayer(1);
     $(this).remove();
-  }
+  });
   
   function startPlayer(channel) {
     currentVideoID = 0;
     $.get('/videos.json', function(data) {
       playlist = shuffle(data);
+      $('.icon-heart, #currently').show();
       $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
       if( playlist[currentVideoID]['heart'] == true ) {
         $('#heart').addClass('active');

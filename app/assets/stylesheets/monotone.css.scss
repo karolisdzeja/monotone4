@@ -93,6 +93,7 @@ ul.user-menu li {
 #test-pattern {
   width: $video-width;
   height: $video-height;
+  cursor: pointer;
 }
 #video-menu {
   position: absolute;
@@ -116,6 +117,9 @@ ul.user-menu li {
 }
 .right {
   float: right;
+}
+.icon-heart, #currently {
+  visibility: hidden;
 }
 .icon-heart:hover, .icon-heart.active {
   color: #c0392b;
