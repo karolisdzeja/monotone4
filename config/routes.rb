@@ -8,6 +8,7 @@ Monotone4::Application.routes.draw do
   root :to => 'high_voltage/pages#show', id: 'home'
 
   devise_for :users
+  
   mount RailsAdmin::Engine => '/hq', :as => 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

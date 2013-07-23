@@ -64,7 +64,7 @@ ul.user-menu li {
   background: $logo-color;
   padding: 0 18px;
   font-size: 12px;
-  color: #fff;
+  color: #fff !important;
   border-radius: 4px;
   height: 36px;
   line-height: 36px;
@@ -73,7 +73,6 @@ ul.user-menu li {
 }
 .button:hover {
   background: lighten($logo-color, 5%);
-  color: #fff;
 }
 #main-container {
   width: $video-width;
