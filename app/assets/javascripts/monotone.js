@@ -24,11 +24,15 @@ $(document).ready(function() {
   
   var currentVideoID = 0;
   var playlist;
-  startPlayer(1);
+  
+  $('#test-pattern').click(function() {
+    startPlayer(1);
+    $(this).remove();
+  }
   
   function startPlayer(channel) {
     currentVideoID = 0;
-    $.get('http://monotone-15903.usw1.actionbox.io:3000/videos.json', function(data) {
+    $.get('/videos.json', function(data) {
       playlist = shuffle(data);
       $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
       if( playlist[currentVideoID]['heart'] == true ) {

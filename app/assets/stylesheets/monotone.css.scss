@@ -90,6 +90,10 @@ ul.user-menu li {
   overflow: hidden;
   background: #0a0a0a;
 }
+#test-pattern {
+  width: $video-width;
+  height: $video-height;
+}
 #video-menu {
   position: absolute;
   top: 0;
