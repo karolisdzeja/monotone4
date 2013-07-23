@@ -4,6 +4,7 @@ $video-width: 1280px;
 $video-height: 720px;
 $header-height: 72px;
 $icon-color: #bdc3c7;
+$footer-height: 44px;
 body {
   margin: 0;
   background: $bg-color;
@@ -34,7 +35,6 @@ header {
     }
   }
 }
-
 #full-screen {
   height: $header-height;
   width: $header-height;
@@ -48,12 +48,24 @@ header {
 #full-screen:hover {
   color: #2980b9;
 }
+
+ul.user-menu {
+  list-style: none;	
+  margin: 0 0 2em;
+  padding: 0;
+  float: right;
+}
+ul.user-menu li {
+  display: inline;  
+}
 #main-container {
   width: $video-width;
-  height: $video-height + $header-height;
+  height: $video-height + $header-height + $footer-height;
   margin: 0 auto;
   position: relative;
   box-shadow: 0px 8px 16px #444;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 #video-player {
   width: $video-width;
@@ -68,27 +80,48 @@ header {
   box-shadow: 4px 4px 8px #888;
 }
 .button {
-  padding: 0;
-  display: block;
   float: left;
-  font-size: 48px;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  color: #bdc3c7;
+  color: $icon-color;
+  height: $footer-height;
+  width: $footer-height;
+  line-height: $footer-height;
+}
+.left {
+  float: left
+}
+.right {
+  float: right;
 }
 .icon-heart:hover, .icon-heart.active {
   color: #c0392b;
 }
-#full-screen:hover {
-  color: #2980b9;
+.icon-youtube:hover {
+  color: #CD332D;
 }
-ul.user-menu {
-  list-style: none;	
-  margin: 0 0 2em;
-  padding: 0;
-  float: right;
+.icon-twitter-squared:hover {
+  color: #4099FF;
 }
-ul.user-menu li {
-  display: inline;  
+.icon-facebook-squared:hover {
+  color: #3B5998;
+}
+footer {
+  height: $footer-height;
+  width: $video-width - 30px;
+  background: $header-color;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  padding: 0 15px;
+}
+#currently {
+  float: left;
+  font-size: 18px;
+  line-height: $footer-height;
+  color: #444;
+}
+#song-artist-title {
+  font-weight: bold;
 }

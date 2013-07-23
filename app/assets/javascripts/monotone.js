@@ -30,6 +30,7 @@ $(document).ready(function() {
     currentVideoID = 0;
     $.get('http://monotone-15903.usw1.actionbox.io:3000/videos.json', function(data) {
       playlist = shuffle(data);
+      $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
       $('#video-player').tubeplayer({
         width: 1280, // the width of the player
         height: 720, // the height of the player
@@ -51,6 +52,7 @@ $(document).ready(function() {
 
   function playNextVideo() {
     currentVideoID += 1;
+    $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
     $('#video-player').tubeplayer('play',playlist[currentVideoID]['youtube']);
   }
   
