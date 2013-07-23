@@ -55,9 +55,17 @@ ul.user-menu {
   margin: 0 72px 0 0;
   padding: 0;
   float: right;
+  height: $header-height;
 }
 ul.user-menu li {
-  display: inline;  
+  display: inline;
+}
+ul.user-menu li a {
+  display: inline-block;
+  line-height: 36px;
+  margin: 18px 0 18px 18px;
+  padding: 0 18px;
+  font-size: 12px;
 }
 .button {
   display: inline-block;
@@ -77,7 +85,7 @@ ul.user-menu li {
 #main-container {
   width: $video-width;
   height: $video-height + $header-height + $footer-height;
-  margin: 0 auto;
+  margin: 0 auto 44px;
   position: relative;
   box-shadow: 0px 8px 16px #444;
   border-bottom-right-radius: 15px;
@@ -148,4 +156,7 @@ footer {
 }
 #song-artist-title {
   font-weight: bold;
+}
+.sign-in-wrapper {
+  margin: 20px auto;
 }

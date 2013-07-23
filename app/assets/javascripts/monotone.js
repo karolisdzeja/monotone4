@@ -22,49 +22,72 @@ function shuffle(array) {
 
 $(document).ready(function() {
   
-  var currentVideoID = 0;
+  var playlistVideoID = 0;
   var playlist;
+  var startTime = 0;
   
-  startPlayer(1);
+  startPlayer();
   
-  function startPlayer(channel) {
-    currentVideoID = 0;
+  function startLooper() {
+    var i = 0;
+    if( store.enabled ) {
+      var looperInterval = window.setInterval(function(){looper()},2000);
+      function looper() {
+        store.set('video', playlist[playlistVideoID]);
+        store.set('time', $('#video-player').tubeplayer('data')['currentTime']);
+        i++;
+        console.log(i);
+      }
+    }
+  }
+  
+  function startPlayer() {
+    playlistVideoID = 0;
     $.get('/videos.json', function(data) {
       playlist = shuffle(data);
+      if (typeof store.get('video') != 'undefined') {
+        playlist.unshift(store.get('video'));
+        startTime = parseInt(store.get('time'));
+      }
+      else {
+        startTime = 0;
+      }
+      console.log(playlist);
       $('.icon-heart, #currently').css({'visibility':'visible'});
-      $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
-      if( playlist[currentVideoID]['heart'] == true ) {
+      $('#song-artist-title').html(playlist[playlistVideoID]['artist'] + " - " + playlist[playlistVideoID]['title']);
+      if( playlist[playlistVideoID]['heart'] == true ) {
         $('#heart').addClass('active');
       }
       $('#video-player').tubeplayer({
         width: 1280, // the width of the player
         height: 720, // the height of the player
         allowFullScreen: 'true', // true by default, allow user to go full screen
-        initialVideo: playlist[currentVideoID]['youtube'], // the video that is loaded into the player
+        initialVideo: playlist[playlistVideoID]['youtube'], // the video that is loaded into the player
         preferredQuality: 'hd720',// preferred quality: default, small, medium, large, hd720
         autoPlay: true,
+        start: startTime,
         showControls: false,
         onStop: function(){
           playNextVideo();
         }, // after the player is stopped
         onPlayerEnded: function() {
-          console.log('VIDEO PLAYER ENDED');
           playNextVideo();
         }
       });
+      startLooper();
     });
   }
 
   function playNextVideo() {
-    currentVideoID += 1;
-    $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
-    if( playlist[currentVideoID]['heart'] == true ) {
+    playlistVideoID += 1;
+    $('#song-artist-title').html(playlist[playlistVideoID]['artist'] + " - " + playlist[playlistVideoID]['title']);
+    if( playlist[playlistVideoID]['heart'] == true ) {
       $('#heart').addClass('active');
     }
     else {
       $('#heart').removeClass('active');
     }
-    $('#video-player').tubeplayer('play',playlist[currentVideoID]['youtube']);
+    $('#video-player').tubeplayer('play',playlist[playlistVideoID]['youtube']);
   }
   
   // FullScreen button
@@ -82,6 +105,7 @@ $(document).ready(function() {
               height: 720
             });
             $('#video-player').tubeplayer('quality', 'hd720');
+            $('#video-player').tubeplayer('seek', parseInt(store.get('time')));
           }
         }
       });
@@ -91,6 +115,7 @@ $(document).ready(function() {
         height: screenHeight
       });
       $('#video-player').tubeplayer('quality', 'hd1080');
+      $('#video-player').tubeplayer('seek', parseInt(store.get('time')));
     });
   }
   
@@ -100,7 +125,7 @@ $(document).ready(function() {
       $.ajax({
         type: 'POST',
         url: '/hearts.json',
-        data: {"video_id": playlist[currentVideoID]['id'] },
+        data: {"video_id": playlist[playlistVideoID]['id'] },
         success: function() {
           $('#heart').addClass('active');
         }
@@ -109,7 +134,7 @@ $(document).ready(function() {
     else {
       $.ajax({
         type: 'POST',
-        url: '/hearts/'+playlist[currentVideoID]['id']+'.json',
+        url: '/hearts/'+playlist[playlistVideoID]['id']+'.json',
         data: { _method: 'delete' },
         success: function() {
           $('#heart').removeClass('active');
