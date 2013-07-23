@@ -31,6 +31,9 @@ $(document).ready(function() {
     $.get('http://monotone-15903.usw1.actionbox.io:3000/videos.json', function(data) {
       playlist = shuffle(data);
       $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
+      if( playlist[currentVideoID]['heart'] == true ) {
+        $('#heart').addClass('active');
+      }
       $('#video-player').tubeplayer({
         width: 1280, // the width of the player
         height: 720, // the height of the player
@@ -53,6 +56,12 @@ $(document).ready(function() {
   function playNextVideo() {
     currentVideoID += 1;
     $('#song-artist-title').html(playlist[currentVideoID]['artist'] + " - " + playlist[currentVideoID]['title']);
+    if( playlist[currentVideoID]['heart'] == true ) {
+      $('#heart').addClass('active');
+    }
+    else {
+      $('#heart').removeClass('active');
+    }
     $('#video-player').tubeplayer('play',playlist[currentVideoID]['youtube']);
   }
   
@@ -82,5 +91,29 @@ $(document).ready(function() {
       $('#video-player').tubeplayer('quality', 'hd1080');
     });
   }
+  
+  // Hearts - AJAX
+  $('#heart').click(function() {
+    if(!$(this).hasClass('active')) {
+      $.ajax({
+        type: 'POST',
+        url: '/hearts.json',
+        data: {"video_id": playlist[currentVideoID]['id'] },
+        success: function() {
+          $('#heart').addClass('active');
+        }
+      });
+    }
+    else {
+      $.ajax({
+        type: 'POST',
+        url: '/hearts/'+playlist[currentVideoID]['id']+'.json',
+        data: { _method: 'delete' },
+        success: function() {
+          $('#heart').removeClass('active');
+        }
+      });
+    }
+  });
   
 });

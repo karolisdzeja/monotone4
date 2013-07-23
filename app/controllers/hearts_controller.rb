@@ -1,10 +1,11 @@
 class HeartsController < ApplicationController
-  before_action :set_heart, only: [:show, :edit, :update, :destroy]
+  before_action :set_heart, only: [:show, :edit, :update]
+  before_filter :authenticate_user!
 
   # GET /hearts
   # GET /hearts.json
   def index
-    @hearts = Heart.all
+    @hearts = current_user.hearts
   end
 
   # GET /hearts/1
@@ -24,7 +25,9 @@ class HeartsController < ApplicationController
   # POST /hearts
   # POST /hearts.json
   def create
-    @heart = Heart.new(heart_params)
+    @heart = Heart.new
+    @heart.user = current_user
+    @heart.video = Video.find(params['video_id'])
 
     respond_to do |format|
       if @heart.save
@@ -54,6 +57,7 @@ class HeartsController < ApplicationController
   # DELETE /hearts/1
   # DELETE /hearts/1.json
   def destroy
+    @heart = current_user.hearts.find_by video_id: params[:id]
     @heart.destroy
     respond_to do |format|
       format.html { redirect_to hearts_url }
