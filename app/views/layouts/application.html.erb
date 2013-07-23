@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Monotone4</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <script type="text/javascript" src="//use.typekit.net/pex0clf.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
@@ -11,7 +11,7 @@
 <body>
 <div id="main-container">
 <header>
-  <div id="logo" class="tk-museo-sans">MONOTONE.TV</div>
+  <div id="logo" class="tk-museo-sans"><%= link_to('MONOTONE', root_path)  %></div>
   <div class="icon-resize-full" id="full-screen"></div>
   <ul class="user-menu">
     <%= render 'devise/menu/registration_items' %>

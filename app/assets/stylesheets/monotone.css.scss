@@ -19,11 +19,22 @@ header {
   font-size: 72px;
   line-height: $header-height;
   margin-left: 15px;
-  color: #444;
   cursor: pointer;
   letter-spacing: -5px;
   text-shadow: 1px 1px 0 #000;
+  a {
+    color: #444;
+    text-decoration: none;
+    &:visited {
+      color: #444;
+    }
+    &:hover {
+      color: #444;
+      background-color: transparent;
+    }
+  }
 }
+
 #full-screen {
   height: $header-height;
   width: $header-height;
