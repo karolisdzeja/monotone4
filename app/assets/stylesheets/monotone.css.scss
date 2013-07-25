@@ -49,7 +49,29 @@ header {
 #full-screen:hover {
   color: darken($icon-color, 5%);
 }
-
+#normal-screen {
+  display: none;
+  height: $header-height;
+  width: $header-height;
+  font-size: 36px;
+  color: $logo-color;
+  background: #000;
+  opacity: 0;
+  float: right;
+  line-height: $header-height;
+  text-align: center;
+  cursor: pointer;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99;
+}
+#video-player:hover #normal-screen {
+  opacity: 0.3;
+}
+#normal-screen:hover {
+  opacity: 0.8 !important;
+}
 ul.user-menu {
   list-style: none;	
   margin: 0 72px 0 0;

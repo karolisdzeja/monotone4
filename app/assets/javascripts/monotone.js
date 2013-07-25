@@ -91,6 +91,17 @@ $(document).ready(function() {
         height: windowHeight
       });
       $('#video-player').tubeplayer('quality', 'hd1080');
+    $('#normal-screen').show();
+    $('.typekit-badge').hide();
+  });
+  $('#normal-screen').click(function() {
+    $('#video-player').css({'width':'1280px','height':'720px','position':'static'});
+      $('#video-player').tubeplayer('size', {
+        width: 1280, 
+        height: 720
+      });
+      $('#video-player').tubeplayer('quality', 'hd720');
+    $('#normal-screen').hide();
   });
   
   // Hearts - AJAX
