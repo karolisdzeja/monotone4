@@ -45,14 +45,6 @@ $(document).ready(function() {
     playlistVideoID = 0;
     $.get('/videos.json', function(data) {
       playlist = shuffle(data);
-      if (typeof store.get('video') != 'undefined') {
-        playlist.unshift(store.get('video'));
-        startTime = parseInt(store.get('time'));
-      }
-      else {
-        startTime = 0;
-      }
-      console.log(playlist);
       $('.icon-heart, #currently').css({'visibility':'visible'});
       $('#song-artist-title').html(playlist[playlistVideoID]['artist'] + " - " + playlist[playlistVideoID]['title']);
       if( playlist[playlistVideoID]['heart'] == true ) {
@@ -65,7 +57,7 @@ $(document).ready(function() {
         initialVideo: playlist[playlistVideoID]['youtube'], // the video that is loaded into the player
         preferredQuality: 'hd720',// preferred quality: default, small, medium, large, hd720
         autoPlay: true,
-        start: startTime,
+        start: 0,
         showControls: false,
         onStop: function(){
           playNextVideo();
@@ -74,7 +66,6 @@ $(document).ready(function() {
           playNextVideo();
         }
       });
-      startLooper();
     });
   }
 
@@ -105,7 +96,6 @@ $(document).ready(function() {
               height: 720
             });
             $('#video-player').tubeplayer('quality', 'hd720');
-            $('#video-player').tubeplayer('seek', parseInt(store.get('time')));
           }
         }
       });
@@ -115,7 +105,6 @@ $(document).ready(function() {
         height: screenHeight
       });
       $('#video-player').tubeplayer('quality', 'hd1080');
-      $('#video-player').tubeplayer('seek', parseInt(store.get('time')));
     });
   }
   
