@@ -82,31 +82,16 @@ $(document).ready(function() {
   }
   
   // FullScreen button
-  if($.support.fullscreen){
-    screenHeight = screen.height;
-    screenWidth = screen.width;
-    $('#full-screen').click(function() {
-      $('#video-player').fullScreen({
-        // callback to change back to regular
-        'callback': function(isFullScreen) {
-          if (!isFullScreen) {
-            $('#video-player').css({'width':'1280px','height':'720px'});
-            $('#video-player').tubeplayer("size", {
-              width: 1280, 
-              height: 720
-            });
-            $('#video-player').tubeplayer('quality', 'hd720');
-          }
-        }
-      });
-      $('#video-player').css({'width':screenWidth+'px','height':screenHeight+'px'});
+  $('#full-screen').click(function() {
+    windowHeight = $(window).height();
+    windowWidth = $(window).width();
+    $('#video-player').css({'width':windowWidth+'px','height':windowHeight+'px','position':'fixed','top':'0','left':'0'});
       $('#video-player').tubeplayer('size', {
-        width: screenWidth, 
-        height: screenHeight
+        width: windowWidth, 
+        height: windowHeight
       });
       $('#video-player').tubeplayer('quality', 'hd1080');
-    });
-  }
+  });
   
   // Hearts - AJAX
   $('#heart').click(function() {
