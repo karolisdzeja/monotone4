@@ -85,23 +85,36 @@ $(document).ready(function() {
   $('#full-screen').click(function() {
     windowHeight = $(window).height();
     windowWidth = $(window).width();
-    $('#video-player').css({'width':windowWidth+'px','height':windowHeight+'px','position':'fixed','top':'0','left':'0'});
-      $('#video-player').tubeplayer('size', {
-        width: windowWidth, 
-        height: windowHeight
-      });
-      $('#video-player').tubeplayer('quality', 'hd1080');
+    $('#video-player').css({'width':windowWidth+'px','height':windowHeight+'px','position':'fixed','top':'0','left':'0'}).addClass('full');
+    $('#video-player').tubeplayer('size', {
+      width: windowWidth, 
+      height: windowHeight
+    });
+    $('#video-player').tubeplayer('quality', 'hd1080');
     $('#normal-screen').show();
     $('.typekit-badge').hide();
   });
   $('#normal-screen').click(function() {
-    $('#video-player').css({'width':'1280px','height':'720px','position':'static'});
+    $('#video-player').css({'width':'1280px','height':'720px','position':'static'}).removeClass('full');
       $('#video-player').tubeplayer('size', {
         width: 1280, 
         height: 720
       });
       $('#video-player').tubeplayer('quality', 'hd720');
     $('#normal-screen').hide();
+  });
+  
+  $(window).resize(function() {
+    console.log('resize event');
+    if( $('#video-player').hasClass('full') ) {
+      windowHeight = $(window).height();
+      windowWidth = $(window).width();
+      $('#video-player').css({'width':windowWidth+'px','height':windowHeight+'px'});
+      $('#video-player').tubeplayer('size', {
+        width: windowWidth, 
+        height: windowHeight
+      });
+    }
   });
   
   // Hearts - AJAX
