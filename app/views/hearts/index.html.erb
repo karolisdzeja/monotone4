@@ -1,31 +1,7 @@
-<h1>Listing hearts</h1>
+<h1>Your Loved Videos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Video</th>
-      <th>Created at</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @hearts.each do |heart| %>
-      <tr>
-        <td><%= heart.user_id %></td>
-        <td><%= heart.video_id %></td>
-        <td><%= heart.created_at %></td>
-        <td><%= link_to 'Show', heart %></td>
-        <td><%= link_to 'Edit', edit_heart_path(heart) %></td>
-        <td><%= link_to 'Destroy', heart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Heart', new_heart_path %>
+<ul>
+  <% @hearted_videos.each do |video| %>
+  <li><%= video.artist %> - <%= video.title %> - <div class="icon-button icon-heart left active" id="heart" style="visibility: visible;"></div></li>
+  <% end %>
+</ul>

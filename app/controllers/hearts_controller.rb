@@ -5,7 +5,8 @@ class HeartsController < ApplicationController
   # GET /hearts
   # GET /hearts.json
   def index
-    @hearts = current_user.hearts
+    # @hearts = current_user.hearts
+    @hearted_videos = current_user.videos
   end
 
   # GET /hearts/1
